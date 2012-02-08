@@ -1,7 +1,17 @@
 %html
   %head
-    %title Sinatra + OAuth Template
+    %title Collaborative Tweet
+    %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/css/common.css' }
   %body
-    %h1 Sinatra + OAuth Template
+    %h1 Collaborative Tweet
+
+    =styled_flash
+
+    %form{:action => '/update', :method => 'POST' }
+      %p
+        %textarea{:name => 'status', :cols => 50, :rows => 3}
+      %p
+        = Rack::Csrf.tag(env)
+        %input{:type => 'submit', :value => 'tweet'}
     %p
-      %a{:href => to('/oauth/auth')} connect
+      %a{:href => to('/oauth/auth')} collaborate
