@@ -9,10 +9,10 @@
 
     %form{:action => '/update', :method => 'POST' }
       %p
-        %textarea{:name => 'status', :cols => 50, :rows => 3}
+        %textarea{:name => 'status', :cols => 50, :rows => 3, :disabled => @count <= 0}
       %p
         = Rack::Csrf.tag(env)
-        %input{:type => 'submit', :value => 'tweet'}
+        %input{:type => 'submit', :value => 'tweet', :disabled => @count <= 0 }
     %p
       ='%i collaborators /' % @count
       %a{:href => to('/oauth/auth')} collaborate
