@@ -23,8 +23,10 @@ $(function() {
     e.preventDefault();
 
     var cs = [];
-    var text = $('textarea[name="status"]').val();
+    var textarea = $('textarea[name="status"]');
+    var text = textarea.val();
 
+    textarea.val('');
     $.each(text.split(''), function(i, value) {
       var element = $('<span><a>' + value + '</a></span>');
 
