@@ -58,9 +58,8 @@ end
 def update(c)
   users = Twitter::User.all.sort_by { rand }
 
-  while !users.empty?
+  while user = users.pop
     begin
-      user = users.pop
       s = user.tweet(c,
         settings.oauth_consumer_key,
         settings.oauth_consumer_secret)
