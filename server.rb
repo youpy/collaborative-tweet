@@ -37,30 +37,37 @@ get '/welcome' do
 end
 
 post '/update' do
+  content_type :json
+
+  result = {}
+
   status = params[:status] || ''
-  status.split(//).reverse.each do |c|
-    update(c)
+
+  begin
+    s = update(status)
+
+    result[:status] = 'success'
+    result[:url] = 'http://twitter.com/%s/status/%i' % [s.user[:screen_name], s.id]
+  rescue => e
+    result[:status] = 'error'
   end
 
-  flash[:msg] = 'updated'
-  redirect to('/')
+  result.to_json
 end
 
 def update(c)
-  loop do
+  users = Twitter::User.all.sort_by { rand }
+
+  while !users.empty?
     begin
-      puts c
-      user = Twitter::User.all.sort_by { rand }.first
+      user = users.pop
+      s = user.tweet(c,
+        settings.oauth_consumer_key,
+        settings.oauth_consumer_secret)
 
-      if user
-        user.tweet(c, settings.oauth_consumer_key, settings.oauth_consumer_secret)
-      end
-
-      break
+      break s
     rescue Twitter::Error::Unauthorized
       user.destroy
-    rescue => e
-      break
     end
   end
 end

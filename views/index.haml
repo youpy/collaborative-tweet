@@ -2,12 +2,16 @@
   %head
     %title Collaborative Tweet
     %link{ :rel => 'stylesheet', :type => 'text/css', :href => '/css/common.css' }
+    %script{ :src => 'https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js' }
+    %script{ :src => '/javascripts/app.js' }
   %body
     %h1 Collaborative Tweet
 
     =styled_flash
 
-    %form{:action => '/update', :method => 'POST' }
+    #result
+
+    %form{:id => 'tweet_form', :action => '/update', :method => 'POST' }
       %p
         %textarea{:name => 'status', :cols => 50, :rows => 3, :disabled => @count <= 0}
       %p

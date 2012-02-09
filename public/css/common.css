@@ -2,3 +2,12 @@
   margin: 0.5em 0 1em;
   color: #00f;
 }
+
+#result {
+  font-size: 60px;
+  font-weight: bold;
+}
+
+#result a {
+  text-decoration: none;
+}
