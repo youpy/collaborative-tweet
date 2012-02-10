@@ -1,4 +1,5 @@
 source :rubygems
+
 gem "sinatra"
 gem "haml"
 gem "oauth"
@@ -9,3 +10,8 @@ gem "string-pad", :require => 'string/pad'
 gem "rack_csrf", :require => 'rack/csrf'
 gem "twitter"
 gem "sinatra-flash", :require => 'sinatra/flash'
+
+group :development do
+  gem "therubyracer"
+  gem "guard-coffeescript"
+end

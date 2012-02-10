@@ -1,49 +1,64 @@
-$(function() {
-  var result = $('#result');
-  var C = function(element) {
-    this.element = element;
-    element.css({color: '#ccc'});
-  };
-  C.prototype.update = function() {
-    var that = this;
-    return $.post('/update', {
-      status: this.element.text(),
-      _csrf: $('input[name="_csrf"]').val()
-    }, function(json){
-      if(json.status == 'success') {
-        that.element.find('a').attr('href', json.url).css({color: '#0f0'});
-      } else {
-        that.element.css({color: '#f00'});
+(function() {
+
+  $(function() {
+    var C, result, tweet;
+    result = $('#result');
+    tweet = function(cs) {
+      var d;
+      d = $.when();
+      return $.each(cs.reverse(), function(i, c) {
+        return d = d.pipe(function() {
+          return c.update();
+        });
+      });
+    };
+    C = (function() {
+
+      function C(element) {
+        this.element = element;
+        this.element.css({
+          color: '#ccc'
+        });
       }
+
+      C.prototype.update = function() {
+        var element;
+        element = this.element;
+        return $.post('/update', {
+          status: this.element.text(),
+          _csrf: $('input[name="_csrf"]').val()
+        }, function(json) {
+          if (json.status === 'success') {
+            return element.find('a').attr('href', json.url).css({
+              color: '#0f0'
+            });
+          } else {
+            return element.css({
+              color: '#f00'
+            });
+          }
+        });
+      };
+
+      return C;
+
+    })();
+    return $('#tweet_form').submit(function(e) {
+      var cs, text, textarea;
+      cs = [];
+      textarea = $('textarea[name="status"]');
+      text = textarea.val();
+      $(this).hide();
+      e.preventDefault();
+      textarea.val('');
+      $.each(text.split(''), function(i, value) {
+        var element;
+        element = $("<span><a>" + value + "</a></span>");
+        result.append(element);
+        return cs.push(new C(element));
+      });
+      return tweet(cs);
     });
-  };
-  
-  $('#tweet_form').submit(function(e) {
-    $(this).hide();
-    e.preventDefault();
-
-    var cs = [];
-    var textarea = $('textarea[name="status"]');
-    var text = textarea.val();
-
-    textarea.val('');
-    $.each(text.split(''), function(i, value) {
-      var element = $('<span><a>' + value + '</a></span>');
-
-      result.append(element);
-      cs.push(new C(element));
-    });
-
-    tweet(cs);
   });
 
-  function tweet(cs) {
-    var d = $.when();
-
-    $.each(cs.reverse(), function(i, c) {
-      d = d.pipe(function() {
-        return c.update();
-      });
-    });
-  }
-});
+}).call(this);
