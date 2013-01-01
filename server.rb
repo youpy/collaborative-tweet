@@ -15,6 +15,7 @@ use Rack::Csrf, :raise => true
 
 get '/' do
   @count = Twitter::User.count()
+  @text = params[:text] || ''
 
   haml :index
 end

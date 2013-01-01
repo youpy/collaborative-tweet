@@ -13,7 +13,7 @@
 
     %form{:id => 'tweet_form', :action => '/update', :method => 'POST' }
       %p
-        %textarea{:name => 'status', :cols => 50, :rows => 3, :disabled => @count <= 0}
+        %textarea{:name => 'status', :cols => 50, :rows => 3, :disabled => @count <= 0}&= @text
       %p
         = Rack::Csrf.tag(env)
         %input{:type => 'submit', :value => 'tweet', :disabled => @count <= 0 }
