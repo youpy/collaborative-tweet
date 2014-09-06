@@ -12,7 +12,6 @@ set :oauth_redirect_to, '/welcome'
 
 use Rack::Csrf, :raise => true
 
-
 get '/' do
   @count = Twitter::User.count()
   @text = params[:text] || ''
@@ -66,7 +65,8 @@ def update(c)
         settings.oauth_consumer_secret)
 
       break s
-    rescue Twitter::Error::Unauthorized
+    rescue Twitter::Error::Unauthorized => e
+      p e
       user.destroy
     end
   end
