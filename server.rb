@@ -25,7 +25,7 @@ get '/welcome' do
   access_token_secret = session[:access_token_secret]
 
   access_token = OAuth::AccessToken.new(oauth_consumer, access_token_key, access_token_secret)
-  data = JSON.parse(access_token.get('https://api.twitter.com/1/account/verify_credentials.json').body)
+  data = JSON.parse(access_token.get('https://api.twitter.com/1.1/account/verify_credentials.json').body)
   id_str = data['id_str']
 
   user = Twitter::User.find_or_create_by(:id_str => id_str)
