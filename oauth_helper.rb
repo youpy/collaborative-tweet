@@ -1,5 +1,6 @@
 module OAuthHelper
   enable :sessions
+  set :session_secret, ENV['CT_SESSION_SECRET'] || 'Niu3cksBHew0v7etUKh7tM4AMR'
 
   get '/oauth/auth' do
     request_token = oauth_consumer.get_request_token(:oauth_callback => url('/oauth/cb'))

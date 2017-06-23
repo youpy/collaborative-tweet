@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 require './oauth_helper'
-require './twitter_user'
+require './collaborator'
 
 include OAuthHelper
 
@@ -13,7 +13,7 @@ set :oauth_redirect_to, '/welcome'
 use Rack::Csrf, :raise => true
 
 get '/' do
-  @count = Twitter::User.count()
+  @count = Collaborator.count()
   @text = params[:text] || ''
 
   haml :index
@@ -27,7 +27,7 @@ get '/welcome' do
   data = JSON.parse(access_token.get('https://api.twitter.com/1.1/account/verify_credentials.json').body)
   id_str = data['id_str']
 
-  user = Twitter::User.find_or_create_by(:id_str => id_str)
+  user = Collaborator.find_or_create_by(:id_str => id_str)
   user.key = access_token_key
   user.secret = access_token_secret
   user.save!
@@ -56,7 +56,7 @@ post '/update' do
 end
 
 def update(c)
-  users = Twitter::User.all.sort_by { rand }
+  users = Collaborator.all.sort_by { rand }
 
   while user = users.pop
     begin
