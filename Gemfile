@@ -1,5 +1,5 @@
 source :rubygems
-ruby '2.3.4'
+ruby '2.3.0'
 
 gem "sinatra"
 gem "haml"
