@@ -1,10 +1,10 @@
 development:
-  sessions:
+  clients:
     default:
       database: mongoid_dev
       hosts:
         - localhost:27017
 production:
-  sessions:
+  clients:
     default:
       uri: <%= ENV['MONGODB_URI'] %>

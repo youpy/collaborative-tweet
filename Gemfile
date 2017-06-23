@@ -5,8 +5,8 @@ gem "sinatra"
 gem "haml"
 gem "oauth"
 gem "json", '1.8.3'
-gem "mongo"
-gem 'mongoid'
+gem "mongo", '~> 2.3'
+gem 'mongoid', '~> 6'
 gem "bson_ext"
 gem "string-pad", :require => 'string/pad'
 gem "rack_csrf", :require => 'rack/csrf'
