@@ -1,4 +1,4 @@
-if mongo_uri = ENV['MONGOHQ_URL']
+if mongo_uri = ENV['MONGODB_URI']
   Mongoid.database = Mongo::Connection.from_uri(mongo_uri).
     db(URI.parse(mongo_uri).path.gsub(/^\//, ''))
 else
