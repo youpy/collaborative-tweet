@@ -4,7 +4,7 @@ ruby '2.3.0'
 gem "sinatra"
 gem "haml"
 gem "oauth"
-gem "json", '~> 1.3'
+gem "json", '1.8.3'
 gem "mongo"
 gem 'mongoid'
 gem "bson_ext"

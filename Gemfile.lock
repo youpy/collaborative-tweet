@@ -28,7 +28,7 @@ GEM
       guard (>= 0.8.3)
     haml (3.1.2)
     i18n (0.6.11)
-    json (1.8.1)
+    json (1.8.3)
     mongo (1.10.2)
       bson (= 1.10.2)
     mongoid (2.8.1)
@@ -63,7 +63,7 @@ DEPENDENCIES
   bson_ext
   guard-coffeescript
   haml
-  json
+  json (= 1.8.3)
   mongo
   mongoid
   oauth
@@ -72,3 +72,6 @@ DEPENDENCIES
   sinatra-flash
   string-pad
   twitter (= 4.8.1)
+
+BUNDLED WITH
+   1.11.2
