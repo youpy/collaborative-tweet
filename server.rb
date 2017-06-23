@@ -48,8 +48,6 @@ post '/update' do
 
     result[:status] = 'success'
     result[:url] = 'http://twitter.com/%s/status/%i' % [s.user[:screen_name], s.id]
-  rescue => e
-    result[:status] = 'error'
   end
 
   result.to_json

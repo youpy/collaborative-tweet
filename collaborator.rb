@@ -10,13 +10,12 @@ class Collaborator
   index({ id_str: 1 }, { unique: true })
 
   def tweet(c, consumer_key, consumer_secret)
-    Twitter.configure do |config|
+    client = Twitter::REST::Client.new do |config|
       config.consumer_key = consumer_key
       config.consumer_secret = consumer_secret
-      config.oauth_token = key
-      config.oauth_token_secret = secret
+      config.access_token = key
+      config.access_token_secret = secret
     end
-    twitter = Twitter::Client.new
-    twitter.update c.pad(140)
+    client.update c.pad(140)
   end
 end
