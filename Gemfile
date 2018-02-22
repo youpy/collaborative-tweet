@@ -1,7 +1,7 @@
 source :rubygems
 ruby '2.3.0'
 
-gem "sinatra"
+gem "sinatra", '~> 2.0.1'
 gem "haml"
 gem "oauth"
 gem "json", '1.8.3'
