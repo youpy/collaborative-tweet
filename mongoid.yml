@@ -8,3 +8,5 @@ production:
   clients:
     default:
       uri: <%= ENV['MONGODB_URI'] %>
+      options:
+        retry_writes: false
