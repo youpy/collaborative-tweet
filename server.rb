@@ -4,7 +4,7 @@ require './collaborator'
 
 set :oauth_consumer_key, ENV['OAUTH_CONSUMER_KEY']
 set :oauth_consumer_secret, ENV['OAUTH_CONSUMER_SECRET']
-set :oauth_site, 'https://api.twitter.com/'
+set :oauth_site, 'https://api.twitter.com'
 set :oauth_redirect_to, '/welcome'
 
 enable :sessions
