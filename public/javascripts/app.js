@@ -48,10 +48,13 @@
       cs = [];
       textarea = $('textarea[name="status"]');
       text = textarea.val();
+      console.log(text)
+      chars = [...text]
+      console.log(chars)
       $(this).hide();
       e.preventDefault();
       textarea.val('');
-      $.each(text.split(''), function(i, value) {
+      $.each(chars, function(i, value) {
         var element;
         element = $("<span><a>" + value + "</a></span>");
         result.append(element);
