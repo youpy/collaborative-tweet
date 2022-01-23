@@ -48,7 +48,9 @@
       cs = [];
       textarea = $('textarea[name="status"]');
       text = textarea.val();
+      console.log(text)
       chars = [...text]
+      console.log(chars)
       $(this).hide();
       e.preventDefault();
       textarea.val('');
