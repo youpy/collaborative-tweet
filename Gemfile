@@ -13,7 +13,3 @@ gem 'rack_csrf', :require => 'rack/csrf'
 gem 'twitter', '~> 6'
 gem 'sinatra-flash', :require => 'sinatra/flash'
 gem 'activesupport', '>= 5.2.4.3'
-
-group :development do
-  gem 'guard-coffeescript'
-end
