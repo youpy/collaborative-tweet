@@ -27,10 +27,11 @@ $ () ->
     cs = []
     textarea = $('textarea[name="status"]');
     text = textarea.val()
+    chars = [...text]
     $(this).hide()
     e.preventDefault();
     textarea.val('')
-    $.each(text.split('')
+    $.each(chars
       (i, value) ->
         element = $("<span><a>#{value}</a></span>")
         result.append element
