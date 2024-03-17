@@ -52,7 +52,7 @@ GEM
     naught (1.1.0)
     oauth (0.5.8)
     public_suffix (4.0.6)
-    rack (2.2.6.4)
+    rack (2.2.8.1)
     rack-protection (2.2.3)
       rack
     rack_csrf (2.6.0)
